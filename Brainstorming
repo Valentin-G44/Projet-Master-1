@@ -6,3 +6,17 @@ Surveillance du trafic (Wiershark)
 Application web
 Envoi de phishing (SET)
 test d'authentification (Force brute, Medusa, Hydra)
+
+Etape
+Recherche sur les fonctionnalités pour la tool box (nmap, brut force...)
+Choix des fonctionalité de la tool box (menu ect...)
+Choix de 3 à 6 fonctionnalité pour la tool box
+Recherche approfondie sur ces technologies (Comment les implémenter dans du code, module/fonction existante)
+Codé sur Python
+  -Coder l'inferface de notre prgm
+  -Implémenter les fonctionnalités (nmap, brut force..)
+      -Récupérer les données acquises avec nos tests
+      -Créer des rapprots qui contiennent nos données
+
+Pouvoir appeler notre prgm à partir d'un terminal
+Pouvoir appeler notre prgm à partir d'un terminal linux
