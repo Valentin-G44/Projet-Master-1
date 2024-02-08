@@ -1,0 +1,11 @@
+Def main_menu():
+    print("Bienvenue dans la Boîte à Outils de Test d'Intrusion")
+    print("1. Scan avec Nmap")
+    print("2. Scan avec OpenVAS")
+    print("3. Attaque avec Hydra")
+    print("4. Exploitation avec Metasploit")
+    print("5. Post-exploitation avec Meterpreter")
+    print("6. Reporting avec Dradis")
+    print("0. Quitter")
+
+    choice = input("Choisissez une option : ")
