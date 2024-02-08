@@ -1,11 +1,24 @@
-Idée de fonctionnalité
+Prochaine étape : 
+Finir de lister les outils à utiliser
+Voir pour les implémenter à du code 
+Configurer DVWA pour pouvoir l'utiliser comme domain de test
 
+2 VM
+
+Kali = val mdp =TXXXert
+DVWA = DVWA mdp = admin
+  root > dvwa
+
+
+Idée de fonctionnalité
+/*
 Scanne de vulnérabilité (Port ouvert)
 Référentiel des vulnérabilités (liste des CVE )
 Surveillance du trafic (Wiershark)
 Application web
 Envoi de phishing (SET)
 test d'authentification (Force brute, Medusa, Hydra)
+*/
 
 Etape
 Recherche sur les fonctionnalités pour la tool box (nmap, brut force...)
@@ -20,3 +33,83 @@ Codé sur Python
 
 Pouvoir appeler notre prgm à partir d'un terminal
 Pouvoir appeler notre prgm à partir d'un terminal linux
+
+
+
+
+------------------------------------------------------------------------------
+==============================================================================
+------------------------------------------------------------------------------
+
+La toolbox automatisée pour les tests d'intrusion développée dans ce projet 
+offrira plusieurs fonctions principales pour permettre une réalisation complète 
+et efficace des tests d'intrusion.
+1. Découverte de ports et de services : La toolbox explorera le système
+cible pour identifier les ports et les services en cours d'exécution. Cela 
+permettra à l'utilisateur de connaître l'architecture du système cible et 
+les services disponibles.
+2. Détection de vulnérabilités : La toolbox recherchera les vulnérabilités 
+connues dans les ports et les services identifiés précédemment. Elle 
+pourra également identifier les vulnérabilités qui n'ont pas été corrigées 
+par les mises à jour de sécurité.
+3. Analyse de la sécurité des mots de passe : La toolbox sera capable 
+d'analyser la sécurité des mots de passe utilisés pour accéder aux 
+services du système cible. Elle pourra identifier les mots de passe faibles, 
+réutilisés et potentiellement compromis.
+4. Tests d'authentification : La toolbox pourra réaliser des tests 
+d'authentification pour vérifier si les identifiants et mots de passe fournis 
+sont valides.
+5. Exploitation de vulnérabilités : La toolbox sera capable d'exploiter les 
+vulnérabilités identifiées pour obtenir un accès non autorisé au système 
+cible. Cette fonction sera utilisée pour vérifier l'efficacité des mesures de 
+sécurité en place et pour identifier les vulnérabilités qui peuvent être 
+exploitées pour un accès non autorisé.
+6. Post-exploitation : La toolbox pourra effectuer une analyse approfondie 
+du système cible pour identifier les données sensibles et les mesures de 
+sécurité en place.
+7. Reporting : La toolbox produira des rapports détaillés sur les résultats 
+des tests d'intrusion et les vulnérabilités identifiées, ainsi que des 
+visualisations graphiques pour aider les utilisateurs à comprendre les 
+résultats.
+
+------------------------------------------------------------------------------
+==============================================================================
+------------------------------------------------------------------------------
+
+
+Résumer des Fonctions attendue:
+
+Découverte de ports et de services :
+Outil : Nmap
+Résumé : Nmap > scanner de réseau > permet d'identifier 
+les ports ouverts et les services en cours d'exécution
+
+Détection de vulnérabilités :
+Outil : OpenVAS (Open Vulnerability Assessment System)
+Résumé : OpenVAS > scanner de vulnérabilités > recherche 
+les failles de sécurité connues (dans les ports et les services identifiés précédemment) 
+Permettant donc de détecter les vulnérabilités potentielles 
+
+Analyse de la sécurité des mots de passe :
+Outil : Hydra
+Résumé : Hydra > test d'authentification
+La sécurité des mots de passe > attaque force brute ou dictinnaire
+
+Recherche approfondie sur [Metasploit Framework]
+
+Tests d'authentification :
+Outil :
+Résumé : 
+
+Exploitation de vulnérabilités :
+Outil : 
+Résumé : 
+
+Post-exploitation :
+Outil : 
+Résumé : 
+
+Reporting :
+Outil : 
+Résumé : 
+
