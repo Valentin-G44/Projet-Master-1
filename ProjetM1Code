@@ -4,7 +4,7 @@ import safety
 import os
 import dns.exception
 
-#Fonciton qui va faire un scan de vulnérabilité en local orienté sur les dépendances python principalement
+#Fonction qui va faire un scan de vulnérabilité en local orienté sur les dépendances python principalement
 def safety_check():
     #Définition de la commande pour effectuer le scan avec le module safety
     # 'check' = lancer le pgrm, '--output' = Sortie en text brut, '> resulXXX.txt' = redirection de la commande vers ce fichier .txt
