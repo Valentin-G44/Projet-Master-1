@@ -1,0 +1,72 @@
+import dns.resolver
+import subprocess
+import safety
+import os
+import dns.exception
+
+#Fonciton qui va faire un scan de vulnérabilité en local orienté sur les dépendances python principalement
+def safety_check():
+    #Définition de la commande pour effectuer le scan avec le module safety
+    # 'check' = lancer le pgrm, '--output' = Sortie en text brut, '> resulXXX.txt' = redirection de la commande vers ce fichier .txt
+    commande = "safety check --output text > resultat_safety.txt"
+    
+    # Ancienne commande : os.system(commande)
+    
+    #Nouvelle commande :
+    #Exécution de la commande à l'aide de subprocess.run
+    #Car + sécurisé (Contrôle des intercations avec l'OS)
+    subprocess.run(commande, shell=True)
+    
+    #Ouverture et lecture du fichier resultats
+    with open("resultat_safety.txt", "r") as fichier:
+        print(fichier.read()) #Affichage du contenu du fichier
+    
+    #Porpose à l'utilisateur d'envoyer le rapport par mail
+    print("'\n' Voulez-vous envoyer ce rapport par mail ? \n' ")
+    print("1. Oui")
+    print("2. Non"'\n')
+    choix = input() #Demande à l'utilisateur de saisir son choix
+    
+    #Si l'utilisateur choisit "Oui", on envoie le rapport par mail
+    if choix == "1":
+        try : 
+            mail(["resultat_safety.txt"])#Appel de la fonction pour envoyer le rapprot par mail
+        except:
+            print("Une erreur avec l'envoie du mail")#Gestion des erreurs
+            pass
+    elif choix == "2":
+        pass #Si l'utilisateur choisit "Non", ne fait rien
+    
+    
+#Fonciton qui va faire un scan de vulnérabilité en local orienté sur les dépendances python principalement
+def safety_check():
+    #Définition de la commande pour effectuer le scan avec le module safety
+    # 'check' = lancer le pgrm, '--output' = Sortie en text brut, '> resulXXX.txt' = redirection de la commande vers ce fichier .txt
+    commande = "safety check --output text > resultat_safety.txt"
+    
+    # Ancienne commande : os.system(commande)
+    
+    #Nouvelle commande :
+    #Exécution de la commande à l'aide de subprocess.run
+    #Car + sécurisé (Contrôle des intercations avec l'OS)
+    subprocess.run(commande, shell=True)
+    
+    #Ouverture et lecture du fichier resultats
+    with open("resultat_safety.txt", "r") as fichier:
+        print(fichier.read()) #Affichage du contenu du fichier
+    
+    #Porpose à l'utilisateur d'envoyer le rapport par mail
+    print("'\n' Voulez-vous envoyer ce rapport par mail ? \n' ")
+    print("1. Oui")
+    print("2. Non"'\n')
+    choix = input() #Demande à l'utilisateur de saisir son choix
+    
+    #Si l'utilisateur choisit "Oui", on envoie le rapport par mail
+    if choix == "1":
+        try : 
+            mail(["resultat_safety.txt"])#Appel de la fonction pour envoyer le rapprot par mail
+        except:
+            print("Une erreur avec l'envoie du mail")#Gestion des erreurs
+            pass
+    elif choix == "2":
+        pass #Si l'utilisateur choisit "Non", ne fait rien
