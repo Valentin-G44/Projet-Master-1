@@ -1,8 +1,26 @@
 Prochaine étape : 
+
+Re définition du plan globale :
+1 - Choix des outils (vérifier qu'il soit disponible sur GitHub + autorisation de les utilisers)
+2 - Elaboration du Script qui vas télécharger et exécuter les outils de git hub
+"3 - API GitHub en cas de référentiel privés"
+4 - Gestion de dépendances (Prérequi pour fonctionner, bibliothèque)(modification du script)
+4.1 - Gestion d'autorisation (execution en root)
+
+Autre point à classer :
+-Gestion des paramètres (voir les spécificités pour chaque outils)
+-Gestion des erreurs/sécurités (ex : aucun saisie) (sécurité lors du téléchargement des outils)
+-Mise en place d'une documentation : pour le fonctionnemnt, l'élaboration
+
 Finir de lister les outils à utiliser
 Voir pour les implémenter à du code 
 Re installer DVWA sur docker en conteneur
 Configurer DVWA pour pouvoir l'utiliser comme domain de test
+
+
+
+
+
 
 
 2 VM
