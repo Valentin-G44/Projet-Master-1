@@ -95,8 +95,9 @@ résultats.
 ------------------------------------------------------------------------------
 ==============================================================================
 ------------------------------------------------------------------------------
-
-
+---
+-I-
+---
 Résumer des Fonctions attendue:
 
 Découverte de ports et de services :
@@ -133,3 +134,26 @@ Reporting :
 Outil : 
 Résumé : 
 
+----
+-II-
+----
+Comment utiliser les outils déjà existant sur GitHub ?
+
+Source Chatgpt:
+/*
+Voici un exemple simple en Python pour cloner un référentiel GitHub :
+
+python
+Copy code
+import subprocess
+
+def clone_repository(repo_url, destination_path):
+    try:
+        subprocess.run(["git", "clone", repo_url, destination_path])
+        print("Repository cloned successfully.")
+    except Exception as e:
+        print(f"Error cloning repository: {e}")
+
+# Exemple d'utilisation
+clone_repository("https://github.com/author/repository.git", "/path/to/destination")
+*/
