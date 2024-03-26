@@ -104,17 +104,22 @@ Découverte de ports et de services :
 Outil : Nmap
 Résumé : Nmap > scanner de réseau > permet d'identifier 
 les ports ouverts et les services en cours d'exécution
+Installation depuis Linux : apt-get install nmap -y (https://xael.org/pages/python-nmap.html#:~:text=python%2Dnmap%20%3A%20nmap%20from%20python,-%C3%80%20propos&text=Elle%20permet%20de%20manipuler%20facilement,%C3%AAtre%20utilis%C3%A9e%20de%20mani%C3%A8re%20asynchrone.)
 
 Détection de vulnérabilités :
 Outil : OpenVAS (Open Vulnerability Assessment System)
 Résumé : OpenVAS > scanner de vulnérabilités > recherche 
 les failles de sécurité connues (dans les ports et les services identifiés précédemment) 
 Permettant donc de détecter les vulnérabilités potentielles 
+Installation depuis Linux apt-get install openvas (https://hackingeek.com/comment-installer-openvas-sur-kali-linux/)
+utilisation : ce renseignier sur les commandes en python (https://subscription.packtpub.com/book/cloud-and-networking/9781839217166/13/ch13lvl1sec92/accessing-openvas-with-python)
 
 Analyse de la sécurité des mots de passe :
 Outil : Hydra
 Résumé : Hydra > test d'authentification
 La sécurité des mots de passe > attaque force brute ou dictinnaire
+Installtion depuis linux apt-get install hydra
+utilisation : hydra -l <utilisateur> -P <liste_de_mots_de_passe> <cible> <service>
 
 Recherche approfondie sur [Metasploit Framework]
 
@@ -157,3 +162,116 @@ def clone_repository(repo_url, destination_path):
 # Exemple d'utilisation
 clone_repository("https://github.com/author/repository.git", "/path/to/destination")
 */
+
+-----------------------------------------
+-----------------NMAP--------------------
+-----------------------------------------
+
+import subprocess
+
+# Fonction pour exécuter la commande Nmap
+def execute_nmap_command(target, options):
+    command = ["nmap", target] + options.split()
+    subprocess.run(command)
+
+# Fonction principale pour recueillir les paramètres et exécuter Nmap
+def main():
+    # Demander à l'utilisateur les paramètres nécessaires
+    target = input("Adresse IP de la cible : ")
+    options = input("Options Nmap (par exemple, -sS pour un scan SYN) : ")
+
+    # Exécuter la commande Nmap avec les paramètres fournis
+    execute_nmap_command(target, options)
+
+# Appeler la fonction principale
+if __name__ == "__main__":
+    main()
+
+
+-----------------------------------------
+-----------------CODE HYDRA--------------
+-----------------------------------------
+import subprocess
+
+# Fonction pour exécuter la commande Hydra
+def execute_hydra_command(username, password_list, target, service):
+    command = ["hydra", "-l", username, "-P", password_list, target, service]
+    subprocess.run(command)
+
+# Fonction principale pour recueillir les paramètres et exécuter Hydra
+def main():
+    # Demander à l'utilisateur les paramètres nécessaires
+    username = input("Nom d'utilisateur cible : ")
+    password_list = input("Chemin vers la liste de mots de passe : ")
+    target = input("Adresse IP de la cible : ")
+    service = input("Service cible (par exemple, SSH, HTTP, etc.) : ")
+
+    # Exécuter la commande Hydra avec les paramètres fournis
+    execute_hydra_command(username, password_list, target, service)
+
+# Appeler la fonction principale
+if __name__ == "__main__":
+    main()
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+
+Commande Nmap et Hydra qui enregistre les résulta dans un fichier:
+
+Globale : 
+
+import subprocess
+
+# Fonction pour exécuter la commande Hydra et enregistrer les résultats dans un fichier
+def execute_hydra_command(username, password_list, target, service, output_file):
+    command = ["hydra", "-l", username, "-P", password_list, target, service]
+    with open(output_file, "w") as file:
+        subprocess.run(command, stdout=file)
+
+# Fonction pour exécuter la commande Nmap et enregistrer les résultats dans un fichier
+def execute_nmap_command(target, options, output_file):
+    command = ["nmap", target] + options.split()
+    with open(output_file, "w") as file:
+        subprocess.run(command, stdout=file)
+
+# Fonction pour générer un rapport à partir des fichiers de résultats
+def generate_report(hydra_output_file, nmap_output_file, report_file):
+    with open(report_file, "w") as report:
+        report.write("=== Résultats de Nmap ===\n\n")
+        with open(nmap_output_file, "r") as nmap_results:
+            report.write(nmap_results.read())
+
+        report.write("\n\n=== Résultats de Hydra ===\n\n")
+        with open(hydra_output_file, "r") as hydra_results:
+            report.write(hydra_results.read())
+
+# Fonction principale pour recueillir les paramètres et exécuter les commandes
+def main():
+    # Demander à l'utilisateur les paramètres nécessaires pour Hydra
+    username = input("Nom d'utilisateur cible : ")
+    password_list = input("Chemin vers la liste de mots de passe : ")
+    target = input("Adresse IP de la cible : ")
+    service = input("Service cible (par exemple, ssh, http, etc.) : ")
+    hydra_output_file = input("Nom du fichier pour les résultats Hydra : ")
+
+    # Exécuter la commande Hydra avec les paramètres fournis
+    execute_hydra_command(username, password_list, target, service, hydra_output_file)
+
+    # Demander à l'utilisateur les paramètres nécessaires pour Nmap
+    target = input("\nAdresse IP de la cible pour Nmap : ")
+    options = input("Options Nmap (par exemple, -sS pour un scan SYN) : ")
+    nmap_output_file = input("Nom du fichier pour les résultats Nmap : ")
+
+    # Exécuter la commande Nmap avec les paramètres fournis
+    execute_nmap_command(target, options, nmap_output_file)
+
+    # Demander à l'utilisateur le nom du fichier pour le rapport
+    report_file = input("\nNom du fichier pour le rapport final : ")
+
+    # Générer le rapport à partir des fichiers de résultats
+    generate_report(hydra_output_file, nmap_output_file, report_file)
+    print("Le rapport a été généré avec succès.")
+
+# Appeler la fonction principale
+if __name__ == "__main__":
+    main()
