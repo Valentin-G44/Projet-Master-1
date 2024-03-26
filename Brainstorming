@@ -215,7 +215,7 @@ import subprocess
 
 # Fonction pour exécuter la commande Hydra
 def execute_hydra_command(username, password_list, target, service):
-    command = ["hydra", "-l", username, "-P", password_list, target, service]
+    command = ["hydra", "-l", username, "-P", password_list, "-f", target, service]
     subprocess.run(command)
 
 # Fonction principale pour recueillir les paramètres et exécuter Hydra
@@ -244,7 +244,7 @@ import subprocess
 
 # Fonction pour exécuter la commande Hydra et enregistrer les résultats dans un fichier
 def execute_hydra_command(username, password_list, target, service, output_file):
-    command = ["hydra", "-l", username, "-P", password_list, target, service]
+    command = ["hydra", "-l", username, "-P", password_list, "-f", target, service]
     with open(output_file, "w") as file:
         subprocess.run(command, stdout=file)
 
