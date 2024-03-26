@@ -17,6 +17,25 @@ Voir pour les implémenter à du code
 Re installer DVWA sur docker en conteneur
 Configurer DVWA pour pouvoir l'utiliser comme domain de test
 
+Test du 26/03/24
+Install avec un fishier .sh
+#!/bin/bash
+/*
+# Installation de Nmap avec sudo
+echo "Installation de Nmap..."
+sudo apt update
+sudo apt install -y nmap
+
+# Installation de Hydra avec sudo
+echo "Installation de Hydra..."
+sudo apt install -y hydra
+*/
+
+Test des commandes à la mains : 
+nmap -p <plage_de_ports> <adresse_IP_cible>
+hydra -l <nom_utilisateur> -P <chemin_vers_liste_de_mots_de_passe> <adresse_IP_cible> <service>
+
+Ajout du fichier de liste de mots de passe
 
 
 
@@ -120,6 +139,7 @@ Résumé : Hydra > test d'authentification
 La sécurité des mots de passe > attaque force brute ou dictinnaire
 Installtion depuis linux apt-get install hydra
 utilisation : hydra -l <utilisateur> -P <liste_de_mots_de_passe> <cible> <service>
+Ajouter une world liste nomé = password_list
 
 Recherche approfondie sur [Metasploit Framework]
 
@@ -228,9 +248,9 @@ def execute_hydra_command(username, password_list, target, service, output_file)
     with open(output_file, "w") as file:
         subprocess.run(command, stdout=file)
 
-# Fonction pour exécuter la commande Nmap et enregistrer les résultats dans un fichier
-def execute_nmap_command(target, options, output_file):
-    command = ["nmap", target] + options.split()
+# Fonction pour exécuter la commande Nmap pour un scan de ports et enregistrer les résultats dans un fichier
+def execute_nmap_port_scan(target, port_range, output_file):
+    command = ["nmap", "-p", port_range, target]
     with open(output_file, "w") as file:
         subprocess.run(command, stdout=file)
 
@@ -258,12 +278,15 @@ def main():
     execute_hydra_command(username, password_list, target, service, hydra_output_file)
 
     # Demander à l'utilisateur les paramètres nécessaires pour Nmap
-    target = input("\nAdresse IP de la cible pour Nmap : ")
-    options = input("Options Nmap (par exemple, -sS pour un scan SYN) : ")
+    target = input("Adresse IP de la cible : ")
+    port_range = input("Plage de ports à scanner (par exemple, 1-1000) : ")
     nmap_output_file = input("Nom du fichier pour les résultats Nmap : ")
 
-    # Exécuter la commande Nmap avec les paramètres fournis
-    execute_nmap_command(target, options, nmap_output_file)
+    # Exécuter la commande Nmap pour un scan de ports avec les paramètres fournis
+    execute_nmap_port_scan(target, port_range, nmap_output_file)
+
+#A retirer peut être
+    print("Le scan de ports a été effectué avec succès. Les résultats ont été enregistrés dans", nmap_output_file)
 
     # Demander à l'utilisateur le nom du fichier pour le rapport
     report_file = input("\nNom du fichier pour le rapport final : ")
