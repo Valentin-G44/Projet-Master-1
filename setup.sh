@@ -8,3 +8,7 @@ sudo apt install -y nmap
 # Installation de Hydra avec sudo
 echo "Installation de Hydra..."
 sudo apt install -y hydra
+
+# Installation de Python3
+echo "Installation de Python3..."
+apt-get install python3 -y
