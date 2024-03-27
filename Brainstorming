@@ -257,7 +257,7 @@ else:
 
 
 ----------------------------------------------------------------
------------------NAMP_Info_Vulnéra_Port_Open--------------------
+-----------------NMAP_Info_Vulnéra_Port_Open--------------------
 ----------------------------------------------------------------
 
 # Fonction pour exécuter les scripts de détection de vulnérabilités avec Nmap NSE
@@ -289,7 +289,7 @@ if __name__ == "__main__":
         execute_nmap_vulnerability_scan(target, port, vulnerability_output_file)
 
 -----------------------------------------------------------------------------
------------------NAMP_Info_Vulnéra_Service_Open/existant---------------------
+-----------------NMAP_Info_Vulnéra_Service_Open/existant---------------------
 -----------------------------------------------------------------------------
 
 # Fonction pour exécuter les scripts de détection de vulnérabilités avec Nmap NSE
