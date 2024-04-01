@@ -1,3 +1,4 @@
+#Fichier actuel
 import subprocess
 import os
 
@@ -43,12 +44,38 @@ def execute_nikto(target, output_file):
 #######################################################################################################################################################
 #Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra.Hydra#
 #######################################################################################################################################################
-#1/1/1/1/1/1/1/1/1
-# Fonction pour exécuter la commande Hydra et enregistrer les résultats dans un fichier
-def execute_hydra_command(username, password_list, target, service, output_file):
-    command = ["hydra", "-l", username, "-P", password_list, "-f", target, service]
+#1/1/1/1/1/1/1/1/1 - Hydra usr/mdp inconnue 
+# Fonction pour analyser la sécurité des mots de passe avec Hydra
+def analyze_password_security(username_list, password_list, target, service, output_file):
+    command = ["hydra", "-L", username_list, "-P", password_list, target, service]
     with open(output_file, "w") as file:
         subprocess.run(command, stdout=file)
+    print("Analyse de la sécurité des mots de passe effectuée avec succès. Les résultats ont été enregistrés dans {}".format(output_file))
+
+#2/2/2/2/2/2/2/2/2 - Hydra usr connue mdp inconnue
+# Fonction pour tester une liste de mots de passe pour un identifiant connu avec Hydra
+def test_password_list_for_username(username, password_list, target, service, output_file):
+    command = ["hydra", "-l", username, "-P", password_list, target, service]
+    with open(output_file, "w") as file:
+        subprocess.run(command, stdout=file)
+    print("Test de la liste de mots de passe pour l'identifiant {} effectué avec succès. Les résultats ont été enregistrés dans {}".format(username, output_file))
+
+#3/3/3/3/3/3/3/3/3 - Hydra usr incconue mdp connue
+# Fonction pour tester une liste d'identifiants pour un mot de passe connu avec Hydra
+def test_username_list_for_password(username_list, password, target, service, output_file):
+    command = ["hydra", "-L", username_list, "-p", password, target, service]
+    with open(output_file, "w") as file:
+        subprocess.run(command, stdout=file)
+    print("Test de la liste d'identifiants pour le mot de passe {} effectué avec succès. Les résultats ont été enregistrés dans {}".format(password, output_file))
+
+#4/4/4/4/4/4/4/4/4 - Hydra Connexion avec le usr/mdp
+# Fonction pour tester l'authentification avec les identifiants récupérés auparavant avec Hydra
+def test_authentication_with_credentials(credentials_file, target, service, output_file):
+    command = ["hydra", "-C", credentials_file, target, service]
+    with open(output_file, "w") as file:
+        subprocess.run(command, stdout=file)
+    print("Test d'authentification avec les identifiants récupérés effectué avec succès. Les résultats ont été enregistrés dans {}".format(output_file))
+                                                                                                                                                   
 
 #######################################################################################################################################################
 #Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rapport.Rappo#
@@ -141,30 +168,42 @@ def main():
             print("5. Retour au choix de l'outil")
             choix_hydra = input("Votre choix (1, 2, 3, 4 ou 5) : ")
             if choix_hydra == "1":
-                # Code pour l'option 1 de Hydra
-                # Demander à l'utilisateur les paramètres nécessaires pour Hydra
-                username = input("Nom d'utilisateur cible : ")
-                password_list = "/home/valentingaget/Downloads/password_list.txt"
+                # Code pour l'option 1 : Analyse de la sécurité des mots de passe
+                username_list = input("Chemin vers la liste d'identifiants : ")
+                password_list = input("Chemin vers la liste de mots de passe : ")
                 target = input("Adresse IP de la cible : ")
                 service = input("Service cible (par exemple, ssh, http, etc.) : ")
-                hydra_output_file = input("Nom du fichier pour les résultats Hydra : ")
-
-                # Exécuter la commande Hydra avec les paramètres fournis
-                execute_hydra_command(username, password_list, target, service, hydra_output_file)
-
-
+                output_file = input("Nom du fichier pour les résultats Hydra : ")
+                analyze_password_security(username_list, password_list, target, service, output_file)
 
             elif choix_hydra == "2":
-                # Code pour l'option 2 de Hydra
-                pass  # Placeholder pour la fonctionnalité future
+                # Code pour l'option 2 : Tester une liste de mots de passe pour un identifiant connu
+                username = input("Nom d'utilisateur cible : ")
+                password_list = input("Chemin vers la liste de mots de passe : ")
+                target = input("Adresse IP de la cible : ")
+                service = input("Service cible (par exemple, ssh, http, etc.) : ")
+                output_file = input("Nom du fichier pour les résultats Hydra : ")
+                test_password_list_for_username(username, password_list, target, service, output_file)
+        
 
             elif choix_hydra == "3":
-                # Code pour l'option 3 de Hydra
-                pass  # Placeholder pour la fonctionnalité future
-
+                # Code pour l'option 3 : Tester une liste d'identifiants pour un mot de passe connu
+                username_list = input("Chemin vers la liste d'identifiants : ")
+                password = input("Mot de passe cible : ")
+                target = input("Adresse IP de la cible : ")
+                service = input("Service cible (par exemple, ssh, http, etc.) : ")
+                output_file = input("Nom du fichier pour les résultats Hydra : ")
+                test_username_list_for_password(username_list, password, target, service, output_file)
+     
+#Retirer ????????
             elif choix_hydra == "4":
-                # Code pour l'option 4 de Hydra
-                pass  # Placeholder pour la fonctionnalité future
+                # Code pour l'option 4 : Test d'authentification avec les identifiants récupérés avant
+                credentials_file = input("Chemin vers le fichier contenant les identifiants récupérés : ")
+                target = input("Adresse IP de la cible : ")
+                service = input("Service cible (par exemple, ssh, http, etc.) : ")
+                output_file = input("Nom du fichier pour les résultats Hydra : ")
+                test_authentication_with_credentials(credentials_file, target, service, output_file)
+                                                                                                        #Retirer ????????   
 
             elif choix_hydra == "5":
                 continue  # Retour au choix de l'outil
@@ -226,11 +265,12 @@ def main():
         
         elif choix_outil == "5":
                 
+                print("Rien ici pour le moment")
                 # Demander à l'utilisateur le nom du fichier pour le rapport
-                report_file = input("\nNom du fichier pour le rapport final : ")
+                #report_file = input("\nNom du fichier pour le rapport final : ")
 
                 # Générer le rapport à partir des fichiers de résultats
-                generate_report(hydra_output_file, nmap_output_file, report_file)
+               # generate_report(hydra_output_file, nmap_output_file, report_file)
              
         elif choix_outil == "6":
             break  # Fermeture du programme
