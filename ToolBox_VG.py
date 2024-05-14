@@ -282,7 +282,7 @@ def create_pdf(scan_port_data, discovery_services_data, dirb_data, nikto_data, n
     # Page de garde
     cover = [
         Paragraph(f"Rapport ToolBox du {datetime.now().strftime('%d/%m/%Y')}", styles['Title']),
-        Paragraph("ToolBox réalisé par Valentin XXX", styles['Normal'])
+        Paragraph("ToolBox réalisé par Valentin GAGET", styles['Normal'])
     ]
     content.extend(cover)
 
