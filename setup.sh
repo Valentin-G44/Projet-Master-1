@@ -1,13 +1,16 @@
 #!/bin/bash
 
+echo apt update
+
+# Installation de python sur Ubuntu/Débian et CentOS
+echo "Installantion de python..."
+sudo apt install python3
+sudo yum install python3
+
 # Installation de Nmap avec sudo
 echo "Installation de Nmap..."
-sudo apt update
 sudo apt install -y nmap
 
-# Installation de Curl avec sudo
-echo "Installation de Curl..."
-sudo apt install -y curl
 
 # Installation de Dirb avec sudo
 echo "Installation de Dirb..."
@@ -21,5 +24,6 @@ sudo apt install -y nikto
 echo "Installation de Hydra..."
 sudo apt install -y hydra
 
-
-
+pip install reportlab
+pip install os
+pip install sys
