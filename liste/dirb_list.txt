@@ -1,0 +1,13 @@
+/.git/
+/admin/
+/cgi-bin/
+/config/
+/docs/
+/images/
+/index.php
+/js/
+/login/
+/php/
+/scripts/
+/uploads/
+/wp-admin/
