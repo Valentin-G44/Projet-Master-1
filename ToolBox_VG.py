@@ -642,10 +642,10 @@ def main():
                 # Code pour Hydra
                 print("\nVeuillez choisir l'option Hydra à exécuter :")
                 print("1. Analyse de la sécurité des mots de passe")
-                print("2. Tester une liste de mdp pour 1 identifient connue")
-                print("3. Tester une liste d identifient pour un mdp connue")
-                print("4. Test d authentification avec les identifiants récupérer avant")
-                print("5. Tester si votre mots de passe est compromis")
+                print("2. Tester une liste de mdp pour 1 identifient connu")
+                print("3. Tester une liste d'identifient pour un mdp connu")
+                print("4. Test d authentification avec les identifiants récupérés avant")
+                print("5. Tester si votre mot de passe est compromis")
                 print("6. Retour au choix de l'outil")
                 choix_hydra = input("Votre choix (1 à 6) : ")
                 
@@ -701,7 +701,7 @@ def main():
                 print("\nVeuillez choisir l'option CVE à exécuter :")
                 print("1. Port - CVE")
                 print("2. Service - CVE")
-                print("3. Systhème d'exploitation - CVE")
+                print("3. Système d'exploitation - CVE")
                 print("4. Retour au choix de l'outil")
                 choix_CVE = input("Votre choix (1 à 4.) : ")
             
