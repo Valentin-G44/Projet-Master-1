@@ -24,6 +24,10 @@ sudo apt install -y nikto
 echo "Installation de Hydra..."
 sudo apt install -y hydra
 
+echo "Installation de reportlab.."
+sudo apt install python3-reportlab
+
+
 pip install reportlab
 pip install os
 pip install sys
